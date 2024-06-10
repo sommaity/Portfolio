@@ -1,68 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 import {
-    NavLink,
-} from "react-router-dom";
-const Navbar = ()=>{
-    return(
-                <div
-                    style={{
-                        display: "flex",
-                        background: "black",
-                        padding: "5px 0 5px 5px",
-                        fontSize: "20px",
-                    }}
-                >
-                    <div style={{ margin: "10px" }}>
-                        <NavLink
-                            to="/"
-                            style={({ isActive }) => ({
-                                color: isActive
-                                    ? "greenyellow"
-                                    : "white",
-                            })}
-                        >
-                            Home
-                        </NavLink>
-                    </div>
-                    <div style={{ margin: "10px" }}>
-                        <NavLink
-                            to="/about"
-                            style={({ isActive }) => ({
-                                color: isActive
-                                    ? "greenyellow"
-                                    : "white",
-                            })}
-                        >
-                            About
-                        </NavLink>
-                    </div>
-                    <div style={{ margin: "10px" }}>
-                        <NavLink
-                            to="/portfolio"
-                            style={({ isActive }) => ({
-                                color: isActive
-                                    ? "greenyellow"
-                                    : "white",
-                            })}
-                        >
-                            Portfolio
-                        </NavLink>
-                    </div>
-                    <div style={{ margin: "10px" }}>
-                        <NavLink
-                            to="/contact"
-                            style={({ isActive }) => ({
-                                color: isActive
-                                    ? "greenyellow"
-                                    : "white",
-                            })}
-                        >
-                            Contact
-                        </NavLink>
-                    </div>
-                </div>
-                
+  AiOutlineHome,
+  AiOutlineFundProjectionScreen,
+  AiOutlineUser,
+} from "react-icons/ai";
+import './style.css';
+import { CgFileDocument } from "react-icons/cg";
 
-    );
+function NavBar() {
+  const [navColour] = useState(false);
+  return (
+    <Navbar
+      fixed="top"
+      className={navColour ? "sticky" : "navbar"}
+    >
+      <Container>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto" defaultActiveKey="#home">
+            <Nav.Item>
+              <Nav.Link as={Link} to="/">
+                <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/about"
+              >
+                <AiOutlineUser style={{ marginBottom: "2px" }} /> About
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/portfolio"
+              >
+                <AiOutlineFundProjectionScreen
+                  style={{ marginBottom: "2px" }}
+                />{" "}
+                Portfolio
+              </Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/contact"
+              >
+                <CgFileDocument style={{ marginBottom: "2px" }} /> Contact
+              </Nav.Link>
+            </Nav.Item>
+
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
-export default Navbar;
+
+export default NavBar;

@@ -1,44 +1,34 @@
-import './App.css';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Navbar from './component/Navbar';
+import React, { useState} from "react";
+import NavBar from './component/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import "./component/style.css";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+  const load = useState(true);
   return (
-    <>
-      <BrowserRouter>
-        <header><Navbar/></header>
+    <Router>
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <NavBar />
         <Routes>
-                    <Route
-                        exact
-                        path="/"
-                        element={<Home />}
-                    />
-                    <Route
-                        exact
-                        path="/about"
-                        element={<About />}
-                    />
-                    <Route
-                        exact
-                        path="/portfolio"
-                        element={<Portfolio />}
-                    />
-                    <Route
-                        exact
-                        path="/contact"
-                        element={<Contact />}
-                    />
+          <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
-      </BrowserRouter>
-    </>
+      </div>
+    </Router>
   );
 }
 
